@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+                function book_suggestion()
+                {
+                var book = document.getElementById("artikelName1").value;
+                var xhr;
+                 if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+                    xhr = new XMLHttpRequest();
+                } else if (window.ActiveXObject) { // IE 8 and older
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                var data = "artikelName" + artikelName1;
+                     xhr.open("POST", "start1.php", true); 
+                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");                  
+                     xhr.send(data);
+                     xhr.onreadystatechange = display_data;
+                    function display_data() {
+                     if (xhr.readyState == 4) {
+                      if (xhr.status == 200) {
+                       //alert(xhr.responseText);	   
+                      document.getElementById("suggestion").innerHTML = xhr.responseText;
+                      } else {
+                        alert('There was a problem with the request.');
+                      }
+                     }
+                    }
+                }
+                </script>
+    
+
+    <form name="ajax-demo" id="ajax-demo">
+            
+                        
+                            <input type="text" id="artikelName1" onkeyup="book_suggestion()">
+                            
+                         
+             
+                            <button type="submit" >Submit</button>
+                          
+             
+            </form>
+    <div id="suggestion">
+resutls
+    </div>
+</body>
+</html>
